@@ -1,10 +1,10 @@
 from unittest.mock import Mock, patch
 from nose.tools import assert_is_not_none, assert_list_equal, assert_is_none
 
-from src.apicall import parse_json
+from apicall import parse_json
 
 
-@patch("src.api.apicall.requests.get")
+@patch("apicall.requests.get")
 def test_parse_json_response_ok(mock_get):
     users = [{"id": 1, "username": "Elton"}]
     mock_get.return_value = Mock(ok=True)
@@ -16,7 +16,7 @@ def test_parse_json_response_ok(mock_get):
     assert_list_equal(response.json(), users)
 
 
-@patch("src.api.apicall.requests.get")
+@patch("apicall.requests.get")
 def test_parse_json_response_is_not_ok(mock_get):
     mock_get.return_value = Mock(ok=False)
 
@@ -25,7 +25,7 @@ def test_parse_json_response_is_not_ok(mock_get):
     assert_is_none(response)
 
 
-@patch("src.api.apicall.requests.get")
+@patch("apicall.requests.get")
 def test_getting_name_from_json(mock_get_todos):
     users = {"id": 1, "username": "Elton"}
 
